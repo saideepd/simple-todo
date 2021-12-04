@@ -275,4 +275,25 @@ button {
     padding: 5px;
     margin: 0.25rem 0 0.25rem 0;
   }
-}  
+}
+
+@media screen and (max-width: 500px) {
+  .material-icons.md-24 {
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .btn-remove-todo {
+    margin-left: 5px;
+    /* border: 2px solid var(--remove-button-color); */
+    border-radius: 50%;
+    background-color: white;
+    color: var(--remove-button-color);
+    /* box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25); */
+    /* font-weight: bold; */
+    width: 1.75rem;
+    /* height: 1.5rem; */
+    text-align: center;
+    vertical-align: middle;
+  }
+}
