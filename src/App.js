@@ -1,22 +1,22 @@
 import React from 'react';
 import './App.css';
+import confetti from 'canvas-confetti'; 
 
 function Todo({ todo, index, completeTodo, removeTodo }) {
   return (
     <div 
       className="todo"
-      style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
+      style={{ 
+        textDecoration: todo.isCompleted ? "line-through" : "", 
+        backgroundColor: todo.isCompleted ? "darkgray": ""
+      }}
     >
       <div className="todo-text">
         {todo.text}
       </div>
       <div className="btn-div">
-        {/* <button className="btn-complete-todo" onClick={() => completeTodo(index)} title="Complete Item">Complete</button> */}
         <span className="btn-complete-todo material-icons md-24" onClick={() => completeTodo(index)} title="Complete Item">check_circle</span>
-        {/* <button className="btn-remove-todo" onClick={() => removeTodo(index)} title="Remove Item">x</button> */}
-        <span className="material-icons md-24 btn-remove-todo" onClick={() => removeTodo(index)} title="Remove Item">
-          delete
-        </span>
+        <span className="material-icons md-24 btn-remove-todo" onClick={() => removeTodo(index)} title="Remove Item">delete</span>
       </div>
     </div>
   );
@@ -27,6 +27,7 @@ function TodoForm({ addTodo }) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    // prevent adding blank values
     if (!value || !value.trim() || !value.length === 0) {
       setValue("");
       return;
@@ -44,8 +45,8 @@ function TodoForm({ addTodo }) {
         onChange={e => setValue(e.target.value)}
         placeholder="Enter your to-do item"
         title="Enter your to-do item"
+        autoFocus
       />
-      {/* <button className="btn-add-todo" title="Add Item"> + </button> */}
       <button className="btn-placeholder"><span className="material-icons md-30 btn-add-todo" onSubmit={handleSubmit} title="Add Item">add_circle</span></button>
     </form>
   );
@@ -59,7 +60,7 @@ function App() {
   ]);
 
   const addTodo = text => {
-    const newTodos = [...todos, { text }];
+    const newTodos = [...todos, { text, isCompleted: false }];
     setTodos(newTodos);
   }
 
@@ -67,12 +68,14 @@ function App() {
     const newTodos = [...todos];
     newTodos[index].isCompleted = true;
     setTodos(newTodos);
+    allTasksCompleted(newTodos);
   };
 
   const removeTodo = index => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
+    allTasksCompleted(newTodos);
   };
 
   const displayStatistics = () => {
@@ -80,8 +83,51 @@ function App() {
     const totalCompletedItems = todos.filter(item => item.isCompleted === true).length;
     const totalIncompleteItems = todos.filter(item => item.isCompleted === false || !item.hasOwnProperty('isCompleted')).length;
     
-    alert('Items To-do: ' + totalItems + '\nCompleted: ' + totalCompletedItems + '\nIncomplete: ' + totalIncompleteItems)
+    alert('*** Statistics ***\n\n'
+      + 'Items to-do: ' + totalItems 
+      + '\nCompleted:  ' + totalCompletedItems 
+      + '\nIncomplete:  ' + totalIncompleteItems);
   }
+
+  const allTasksCompleted = (newTodos) => {
+    const totalIncompleteItems = newTodos.filter(item => item.isCompleted === false || !item.hasOwnProperty('isCompleted')).length;
+    
+    if (totalIncompleteItems === 0) {
+      alert('Woohooo!! You\'ve completed all the tasks!');
+      launchConfetti();
+    }
+  }
+
+  const launchConfetti = () => {
+      // launch confetti for 1.5 seconds
+      var duration = 1.5 * 1000;
+      var end = Date.now() + duration;
+
+      (function frame() {
+        // launch a few confetti from the left edge
+        confetti({
+          particleCount: 10,
+          startVelocity: 80,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 1 }
+        });
+        // and launch a few from the right edge
+        confetti({
+          particleCount: 10,
+          startVelocity: 80,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 1 }
+        });
+
+        // keep going until we are out of time
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
+  }
+
 
   return (
     <div className="app">
@@ -99,6 +145,7 @@ function App() {
         <TodoForm addTodo={addTodo} />
         <button className="btn-statistics" onClick={() => displayStatistics()} title="Get Statistics">Get Statistics</button>
       </div>
+    <script src="confetti.js"/>
     </div>
   );
 }
