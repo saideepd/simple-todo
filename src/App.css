@@ -232,7 +232,7 @@ button {
   }
 
   .btn-div {
-    margin: -5px 0 5px 50%;
+    margin: -2rem 0 0 0;
   }
 
 }
@@ -281,6 +281,7 @@ button {
   .material-icons.md-24 {
     font-size: 30px;
     cursor: pointer;
+    vertical-align: unset;
   }
 
   .btn-remove-todo {
