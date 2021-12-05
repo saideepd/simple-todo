@@ -1,7 +1,8 @@
-<<<<<<< HEAD
-# simple-todo
-A simple To-do app created using React to add and remove tasks from list. It can also display the counts of Total To-do items, Completed items and Incomplete items.
-=======
+## To-do App
+A simple To-do app created using React to add and remove tasks from list.
+It can display the counts of Total To-do items, Completed items and Incomplete items.
+This is an improvised version of simple to-do app based on DigitalOcean's tutorial - [How To Build a React To-Do App with React Hooks](https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -72,4 +73,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> 138e745 (Initialize project using Create React App)
