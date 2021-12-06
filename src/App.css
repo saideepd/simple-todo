@@ -143,6 +143,7 @@ button {
   color: white;
   transition: background-color .3s;
   cursor: pointer;
+  float: right;
 }
 
 .btn:hover, .btn:focus {
@@ -181,6 +182,31 @@ button {
   transition: width .2s ease-out, padding-top .2s ease-out;
 }
 
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-auto-flow: row dense;
+  justify-content: center;
+  align-content: center;
+  gap: 16px;
+}
+
+.btn-clear-row {
+  justify-content: right;
+  display: grid;
+  margin-right: 8%;
+  margin-top: 5%;
+  color: var(--remove-button-color);
+}
+
+.btn-clear {
+  border-radius: 50%;
+  border-style: solid;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 10%;
+}
 
 @media screen and (max-width: 800px) {
   .app {
@@ -234,10 +260,18 @@ button {
   .btn-div {
     margin: -2rem 0 0 0;
   }
+  
+  .btn-clear-row {
+    justify-content: right;
+    display: grid;
+    margin-right: 10%;
+    margin-top: 10%;
+    color: var(--remove-button-color);
+  }
 
 }
 
-@media screen and (max-width: 800px) and (orientation:landscape) {
+@media screen and (max-width: 800px) and (max-width: 400px) and (orientation:landscape) {
   .todo-text {
     max-width: 75%;
   }
@@ -277,7 +311,7 @@ button {
   }
 }
 
-@media screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) {
   .material-icons.md-24 {
     font-size: 30px;
     cursor: pointer;
@@ -296,5 +330,22 @@ button {
     /* height: 1.5rem; */
     text-align: center;
     vertical-align: middle;
+  }
+
+  .btn-statistics {
+    margin-right: -25%;
+  }
+
+  .btn-clear-row {
+    justify-content: right;
+    display: grid;
+    margin-right: 15%;
+    margin-top: 10%;
+    color: var(--remove-button-color);
+  }
+
+  .btn-clear {
+    margin-right: 15%;
+    margin-top: 20%;
   }
 }

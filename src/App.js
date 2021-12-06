@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
 import confetti from 'canvas-confetti'; 
+import { useLocalStorage } from './useLocalStorage';
+
+const defaultItem = [{ text: "Add some items to list", isCompleted: false }];
 
 function Todo({ todo, index, completeTodo, removeTodo }) {
   return (
@@ -53,29 +56,41 @@ function TodoForm({ addTodo }) {
 }
 
 function App() {
-  const [todos, setTodos] = React.useState([
-    { text: "Learn about React", isCompleted: false },
-    { text: "Meet friend for lunch", isCompleted: false },
-    { text: "Build really cool todo app", isCompleted: false }
-  ]);
+  var todos, setTodos;
+  // const [todos, setTodos] = React.useState([
+  //   { text: "Learn about React", isCompleted: false },
+  //   { text: "Add some items to list", isCompleted: false },
+  //   { text: "Build really cool todo app", isCompleted: false }
+  // ]);
+  [todos,setTodos] = React.useState(JSON.parse(localStorage.getItem('todos')) || defaultItem);
+  console.log('TempTodo: ',todos);
 
   const addTodo = text => {
     const newTodos = [...todos, { text, isCompleted: false }];
     setTodos(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
+    // let localData = JSON.parse(localStorage.getItem('todos') || "[]");
+    // console.log(localData);
   }
 
   const completeTodo = index => {
     const newTodos = [...todos];
     newTodos[index].isCompleted = true;
     setTodos(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
     allTasksCompleted(newTodos);
   };
 
   const removeTodo = index => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
+    if(newTodos.length === 0) {
+        setTodos(defaultItem)
+        localStorage.setItem('todos', JSON.stringify(newTodos));
+    }
     setTodos(newTodos);
-    allTasksCompleted(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
+    // allTasksCompleted(newTodos);
   };
 
   const displayStatistics = () => {
@@ -87,6 +102,18 @@ function App() {
       + 'Items to-do: ' + totalItems 
       + '\nCompleted:  ' + totalCompletedItems 
       + '\nIncomplete:  ' + totalIncompleteItems);
+  }
+
+  const clearAllTodo = () => {
+    if(localStorage.length > 0) {
+      localStorage.clear();
+      const newTodos = [...todos];
+      while(newTodos.length !== 0) {
+        newTodos.pop();
+      }
+      setTodos(newTodos);
+      localStorage.setItem('todos', JSON.stringify(newTodos));
+    }
   }
 
   const allTasksCompleted = (newTodos) => {
@@ -143,7 +170,10 @@ function App() {
           />
         ))}
         <TodoForm addTodo={addTodo} />
-        <button className="btn-statistics" onClick={() => displayStatistics()} title="Get Statistics">Get Statistics</button>
+        <div className="row">
+          <div className="col"><button className="btn-statistics" onClick={() => displayStatistics()} title="Get Statistics">Get Statistics</button></div>
+          <div className="col btn-clear-row"><span className="material-icons md-30 btn-clear" onClick={() => clearAllTodo()} title="Clear List">delete_forever</span></div>
+        </div>
       </div>
     <script src="confetti.js"/>
     </div>
