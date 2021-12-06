@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import confetti from 'canvas-confetti'; 
-import { useLocalStorage } from './useLocalStorage';
+import confetti from 'canvas-confetti';
 
 const defaultItem = [{ text: "Add some items to list", isCompleted: false }];
 
