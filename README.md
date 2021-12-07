@@ -3,6 +3,24 @@ A simple To-do app created using React to add and remove tasks from list.
 It can display the counts of Total To-do items, Completed items and Incomplete items.
 This is an improvised version of simple to-do app based on DigitalOcean's tutorial - [How To Build a React To-Do App with React Hooks](https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks)
 
+### Features: 
+- Add new tasks
+- Mark completed tasks
+- Delete any tasks
+- Delete All the tasks in one-click
+- View the Statistics about the status of tasks
+
+#### Links to use the To-do app
+- https://saideepd.github.io
+- https://items-todo.netlify.app
+
+---
+### Screenshots:
+![Screenshot from 2021-12-07 20-42-18](https://user-images.githubusercontent.com/30663492/145055778-27af3ade-3b7c-4a25-b4dc-6197e012e343.png)
+
+![Get Statistics](https://user-images.githubusercontent.com/30663492/145055769-30d156bb-a105-496f-9f16-2b3436a63374.png)
+
+---
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
