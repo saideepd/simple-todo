@@ -225,7 +225,7 @@ button {
     justify-content: space-between;
     margin-bottom: 6px;
     padding: 3px 10px;
-    overflow: scroll;
+    overflow: auto;
   }
 
   .todo-list {
