@@ -88,7 +88,7 @@ button {
   vertical-align: middle;
 }
 
-.btn-complete-todo {
+.btn-complete-todo, .btn-undo-todo {
   margin-left: 5px;
   border: none;
   /* border-radius: 3px;
@@ -96,6 +96,10 @@ button {
   padding: 0.15rem;
   vertical-align: middle;
   color: var(--complete-button-color);
+}
+
+.btn-undo-todo {
+  color: black !important;
 }
 
 .btn-add-todo {
