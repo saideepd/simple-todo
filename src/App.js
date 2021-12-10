@@ -65,7 +65,7 @@ function App() {
   //   { text: "Build really cool todo app", isCompleted: false }
   // ]);
   [todos,setTodos] = React.useState(JSON.parse(localStorage.getItem('todos')) || defaultItem);
-  console.log('TempTodo: ',todos);
+  // console.log('TempTodo: ',todos);
 
   const addTodo = text => {
     const newTodos = [...todos, { text, isCompleted: false }];
