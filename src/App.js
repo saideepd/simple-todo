@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 
 const defaultItem = [{ text: "Add some items to list", isCompleted: false }];
 
-function Todo({ todo, index, completeTodo, removeTodo }) {
+function Todo({ todo, index, completeTodo, removeTodo, undoTodo }) {
   return (
     <div 
       className="todo"
@@ -17,7 +17,10 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
         {todo.text}
       </div>
       <div className="btn-div">
-        <span className="btn-complete-todo material-icons md-24" onClick={() => completeTodo(index)} title="Complete Item">check_circle</span>
+        { todo.isCompleted ?
+            <span className="btn-undo-todo material-icons md-24" onClick={() => undoTodo(index)} title="Undo Complete">undo</span>
+          : <span className="btn-complete-todo material-icons md-24" onClick={() => completeTodo(index)} title="Complete Item">check_circle</span>
+        }
         <span className="material-icons md-24 btn-remove-todo" onClick={() => removeTodo(index)} title="Remove Item">delete</span>
       </div>
     </div>
@@ -78,6 +81,13 @@ function App() {
     setTodos(newTodos);
     localStorage.setItem('todos', JSON.stringify(newTodos));
     allTasksCompleted(newTodos);
+  };
+
+  const undoTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = false;
+    setTodos(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
   };
 
   const removeTodo = index => {
@@ -166,6 +176,7 @@ function App() {
             todo={todo}
             completeTodo={completeTodo}
             removeTodo={removeTodo}
+            undoTodo={undoTodo}
           />
         ))}
         <TodoForm addTodo={addTodo} />
