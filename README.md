@@ -11,7 +11,7 @@ This is an improvised version of simple to-do app based on DigitalOcean's tutori
 - View the Statistics about the status of tasks
 
 #### Links to use the To-do app
-- https://saideepd.github.io
+- https://saideepd.github.io/simple-todo
 - https://items-todo.netlify.app
 
 ---
