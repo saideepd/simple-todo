@@ -1,11 +1,21 @@
 {
   "short_name": "To-do App",
   "name": "Simple To-do App",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "description": "An app to help you maintain your productivity with simple yet power packed to-do list with great usability and some easter eggs",
+  "dir": "ltr",
+  "categories": "utilities",
+  "orientation": "any",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "maskable.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "logo192.png",
@@ -17,9 +27,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }
